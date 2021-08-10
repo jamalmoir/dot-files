@@ -66,7 +66,6 @@ set ruler                         " show row and column number in footer
 " Tabs and Indentation
 set autoindent                    " set auto indent
 set expandtab                     " use spaces, not tab characters
-set scrolloff=2                   " minimum lines above/below cursor
 set tabstop=8                     " set indent to 8 spaces - change softtabstop and shiftwidth not this.
 set shiftwidth=2                  " set indent to 2 spaces
 set softtabstop=2                 " set indent to 2 spaces
@@ -88,6 +87,7 @@ set encoding=utf-8                " ascii? Nope. Shift-jis? Hell no. Let's be sa
 set visualbell                    " enable visual bell (disable audio bell)
 set autoread                      " automatically reload files changed outside of vim, unchanged in vim
 set termguicolors                 " enable true colour support
+set scrolloff=2                   " minimum lines above/below cursor
 set cursorline                    " highlight current line
 set nofoldenable                  " disable code folding
 set laststatus=2                  " always show status bar
