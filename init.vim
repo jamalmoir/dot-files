@@ -16,7 +16,7 @@ Plug 'dense-analysis/ale'
 Plug 'vim-scripts/indentpython.vim'
 
 " Navigation
-Plug 'preservim/nerdtree'
+" Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -28,24 +28,26 @@ call plug#end()
 " FZF
 set runtimepath+=/usr/local/opt/fzf       " fuzzy file search
 
+nnoremap <C-p> :Files<CR>
+nnoremap <C-h> :Hist<CR>
+nnoremap gw :Rg <C-R><C-W><CR>
+
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=1
 nnoremap <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " NERDTree
-let NERDTreeIgnore=['\.pyc$', '\~$']
+" let NERDTreeIgnore=['\.pyc$', '\~$']
 
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <tab> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+" nnoremap <tab> :NERDTreeToggle<CR>
+" nnoremap <C-f> :NERDTreeFind<CR>
 
 " Ale
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {
     \    '*': ['remove_trailing_lines', 'trim_whitespace'],
     \    'javascript': ['eslint', 'prettier'],
-    \    'python': ['black']
+    \    'python': ['black', 'isort']
     \}
 
 " Syntastic
@@ -101,15 +103,15 @@ set backspace=indent,eol,start    " more powerful backspacing
 " -----------------
 
 au BufNewFile,BufRead *.py
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=99
-    \ set expandtab
-    \ set fileformat=unix
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+"   \ set textwidth=99 |  Disabled because of annoying auto new line
+    \ set expandtab |
+    \ set fileformat=unix |
     \ let python_highlight_all=1
 
 au BufNewFile,BufRead *.js, *.ts, *.tsx, *.svelte, *.html, *.css
-    \ set softtabstop=2
+    \ set softtabstop=2 |
     \ set shiftwidth=2
 
 
@@ -119,14 +121,10 @@ au BufNewFile,BufRead *.js, *.ts, *.tsx, *.svelte, *.html, *.css
 " Insert space on spacebar
 nnoremap <space> i<space><esc>
 
-" CTRL-W save
-nnoremap <C-w> <esc>:w<return>
-
 " split navigations
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L> nnoremap <C-H> <C-W><C-H>
 
 
 " HIGHLIGHTING
