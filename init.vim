@@ -21,7 +21,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Autocomplete
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'davidhalter/jedi-vim'
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
 call plug#end()
 
@@ -33,8 +34,18 @@ nnoremap <C-h> :Hist<CR>
 nnoremap gw :Rg <C-R><C-W><CR>
 
 " YouCompleteMe
-let g:ycm_autoclose_preview_window_after_completion=1
-nnoremap <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" let g:ycm_autoclose_preview_window_after_completion=1
+" nnoremap <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Jedi
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_stubs_command = "<leader>s"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
 
 py3 3
 py3 << EOF
@@ -43,7 +54,10 @@ import sys
 if 'VIRTUAL_ENV' in os.environ:
     project_base_dir = os.environ['VIRTUAL_ENV']
     activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    execfile(activate_this, dict(__file__=activate_this))
+    # execfile(activate_this, dict(__file__=activate_this))
+
+    with open(activate_this) as infile:
+      exec(infile.read(), {"__file__": infile.read()})
 EOF
 
 " NERDTree
